@@ -15,6 +15,9 @@ type Integer struct {
 func NewInteger(i int64) Integer {
 	return Integer{big.NewInt(i)}
 }
+func NewUInteger(ui uint64) Integer {
+	return Integer{big.NewInt(0).SetUint64(ui)}
+}
 
 func (i Integer) Encode() string {
 	return "i" + i.Text(10) + "e"
