@@ -9,3 +9,8 @@ func TestString_Encode(t *testing.T) {
 		t.Fatalf("Expected %s but got %s", expected, actual)
 	}
 }
+
+func TestString_decodeString(t *testing.T) {
+	expected := String("spam")
+	basicDecodeTest(t, decodeString, "4:spam", expected)
+}

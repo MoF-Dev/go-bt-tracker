@@ -1,7 +1,6 @@
 package bencode
 
 import (
-	"errors"
 	"fmt"
 )
 
@@ -14,7 +13,15 @@ func (e *IncorrectTypeError) Error() string {
 	return fmt.Sprintf("Incorrect bencode type: requested %s, got %s", e.want, e.have)
 }
 
-func Decode(str string) (BValue, error) {
-	// TODO
-	return nil, errors.New("not yet implemented")
+func decode(str string) (BValue, string, error) {
+	switch str[0] {
+	case 'i':
+		return decodeInteger(str[1:])
+	case 'l':
+		return decodeList(str[1:])
+	case 'd':
+		return decodeDictionary(str[1:])
+	default:
+		return decodeString(str)
+	}
 }

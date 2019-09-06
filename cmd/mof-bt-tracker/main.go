@@ -7,7 +7,7 @@ import (
 
 func main() {
 	fmt.Printf("Hello, %s\n", "World")
-	xd := bencode.Integer(56)
+	xd := bencode.NewInteger(56)
 	fmt.Println(xd.Encode())
 	fmt.Println(bencode.String("huehuehue").Encode())
 	dx := bencode.List(make([]bencode.BValue, 3))
@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(dx.Encode())
 	gg := bencode.Dictionary(make(map[string]bencode.BValue))
 	gg["hue"] = bencode.String("lmao")
-	gg["wew"] = bencode.Integer(69)
+	gg["wew"] = bencode.NewInteger(69)
 	gg["list"] = dx
 	fmt.Println(gg.Encode())
 }
