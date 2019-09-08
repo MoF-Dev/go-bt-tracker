@@ -5,12 +5,17 @@ import (
 	"net"
 )
 
-type UdpServer interface {
-	Server
+type udpServerExtras interface {
 	ReadFrom(p []byte) (n int, addr net.Addr, err error)
 	WriteTo(p []byte, addr net.Addr) (n int, err error)
+	Close() error
 	NewSession() (uint64, error)
 	CheckSession(connId uint64) (validSession bool, err error)
+}
+
+type UdpServer interface {
+	Server
+	udpServerExtras
 }
 
 func ListenUdp(server UdpServer) {

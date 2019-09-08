@@ -7,8 +7,12 @@ import (
 	http2 "net/http"
 )
 
+type httpServerExtras interface {
+}
+
 type HttpServer interface {
 	Server
+	httpServerExtras
 }
 
 func ListenHttp(server HttpServer, listener net.Listener) error {
