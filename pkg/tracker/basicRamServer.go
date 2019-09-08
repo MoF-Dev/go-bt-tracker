@@ -47,7 +47,7 @@ func (s *brs) HandleAnnounce(request *AnnounceRequest) (*AnnounceResponse, error
 		tor = cachedTor.(*torrent)
 	} else {
 		tor = &torrent{}
-		tor.peers = cache.New(1*time.Minute, 2*time.Minute)
+		tor.peers = cache.New(1*time.Minute, 30*time.Second)
 		s.torrents.Set(key, tor, cache.DefaultExpiration)
 	}
 
@@ -175,7 +175,8 @@ func NewBasicRamServer(listen string) HttpUdpServer {
 	}
 	server.conn = pc.(*net.UDPConn)
 	// TODO make sure default times are right + configurable
-	server.sessions = cache.New(1*time.Minute, 2*time.Minute)
+	server.sessions = cache.New(1*time.Minute, 1*time.Minute)
+	server.torrents = cache.New(7*24*time.Hour, 1*time.Hour)
 	return &server
 }
 
