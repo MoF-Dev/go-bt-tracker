@@ -28,9 +28,9 @@ func (r ScrapeResponse) Encode() bencode.Dictionary {
 }
 
 type File struct {
-	Completed  uint
-	Downloaded uint
-	Incomplete uint
+	Completed  uint32
+	Downloaded uint32
+	Incomplete uint32
 	Name       *string
 }
 

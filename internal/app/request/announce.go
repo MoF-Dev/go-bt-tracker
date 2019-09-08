@@ -11,11 +11,11 @@ import (
 type AnnounceResponse struct {
 	FailureReason *string // if present, no other keys will be shown
 
-	Interval    uint
-	MinInterval *uint
+	Interval    uint32
+	MinInterval *uint32
 	TrackerId   *string
-	Complete    uint
-	Incomplete  uint
+	Complete    uint32
+	Incomplete  uint32
 	Peers       []Peer
 
 	WarningMessage *string
